@@ -1,0 +1,5 @@
+# Netlify重定向规则
+/*    /index.html   200
+
+# API代理（如需要）
+# /api/*  https://api.example.com/:splat  200

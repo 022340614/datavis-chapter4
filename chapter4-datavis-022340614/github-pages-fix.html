@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 配置修复工具</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .success { border-left: 5px solid #28a745; }
+        .error { border-left: 5px solid #dc3545; }
+        .warning { border-left: 5px solid #ffc107; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages 自动匹配修复工具</h1>
+    
+    <div class="test">
+        <h3>🔧 当前配置</h3>
+        <p><strong>用户名:</strong> <span id="username">022340614</span></p>
+        <p><strong>仓库名:</strong> <span id="repo-name">chapter4-datavis-022340614</span></p>
+        <p><strong>预期网址:</strong> <span id="expected-url">https://022340614.github.io/chapter4-datavis-022340614/</span></p>
+    </div>
+
+    <div class="test" id="url-test">
+        <h3>🌐 URL匹配测试</h3>
+        <p>正在测试访问地址匹配...</p>
+    </div>
+
+    <div class="test" id="file-test">
+        <h3>📁 文件结构测试</h3>
+        <p>正在验证必需文件...</p>
+    </div>
+
+    <div class="test success">
+        <h3>✅ 自动修复方案</h3>
+        <ol>
+            <li><strong>方案A:</strong> 保持当前名称，确保精确匹配</li>
+            <li><strong>方案B:</strong> 重命名为 <code>022340614.github.io</code></li>
+            <li><strong>方案C:</strong> 重命名为 <code>datavis-platform</code></li>
+        </ol>
+    </div>
+
+    <div class="test warning">
+        <h3>🔍 诊断信息</h3>
+        <p><strong>当前访问地址:</strong> <span id="current-url"></span></p>
+        <p><strong>匹配状态:</strong> <span id="match-status">检测中...</span></p>
+    </div>
+
+    <script>
+        // 诊断当前配置
+        const currentUrl = window.location.href;
+        const expectedUrl = 'https://022340614.github.io/chapter4-datavis-022340614/';
+        
+        document.getElementById('current-url').textContent = currentUrl;
+        
+        // URL匹配测试
+        const urlTest = document.getElementById('url-test');
+        if (currentUrl.includes('022340614.github.io/chapter4-datavis-022340614')) {
+            urlTest.innerHTML = '<h3>🌐 URL匹配测试</h3><p>✅ URL路径完全匹配</p>';
+            urlTest.className = 'test success';
+            document.getElementById('match-status').textContent = '✅ 匹配成功';
+        } else {
+            urlTest.innerHTML = '<h3>🌐 URL匹配测试</h3><p>❌ URL路径不匹配</p>';
+            urlTest.className = 'test error';
+            document.getElementById('match-status').textContent = '❌ 需要调整';
+        }
+        
+        // 文件存在性测试
+        const files = ['index.html', 'styles.css', 'script.js', '.nojekyll'];
+        const fileTest = document.getElementById('file-test');
+        let fileHtml = '<h3>📁 文件结构测试</h3>';
+        
+        files.forEach(file => {
+            const img = new Image();
+            img.src = file;
+            img.onload = () => fileHtml += `<p>✅ ${file} - 存在</p>`;
+            img.onerror = () => fileHtml += `<p>❌ ${file} - 缺失</p>`;
+        });
+        
+        setTimeout(() => {
+            fileTest.innerHTML = fileHtml;
+        }, 1000);
+    </script>
+</body>
+</html>

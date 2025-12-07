@@ -1,0 +1,42 @@
+[build]
+  publish = "."
+  command = "echo 'Building data visualization platform'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 重写规则确保SPA正常工作
+[[redirects]]
+  from = "/book-purchase"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/exchange-rate" 
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/product-sales"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/temperature"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/snowflake"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/color-demo"
+  to = "/index.html"
+  status = 200
