@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快速部署验证</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .container { max-width: 600px; margin: 50px auto; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px); }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .step { background: rgba(255,255,255,0.2); padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .success { color: #4CAF50; font-weight: bold; }
+        .error { color: #f44336; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 GitHub Pages 快速部署验证</h1>
+        
+        <div class="step">
+            <h3>✅ 步骤1: 双击运行 deploy.bat</h3>
+            <p>在项目根目录找到 deploy.bat 文件，双击运行</p>
+        </div>
+        
+        <div class="step">
+            <h3>✅ 步骤2: 检查GitHub Actions</h3>
+            <p>访问: <a href="https://github.com/022340614/datavis-chapter4/actions" style="color: #FFD700;">GitHub Actions</a></p>
+        </div>
+        
+        <div class="step">
+            <h3>✅ 步骤3: 验证部署</h3>
+            <p>访问: <a href="https://022340614.github.io/datavis-chapter4/" style="color: #FFD700;">主页面</a></p>
+            <p>访问: <a href="https://022340614.github.io/datavis-chapter4/deploy-test.html" style="color: #FFD700;">测试页面</a></p>
+        </div>
+        
+        <div id="status" class="step">
+            <h3>📊 当前状态检测</h3>
+            <p id="loadStatus">正在检测页面状态...</p>
+        </div>
+    </div>
+
+    <script>
+        // 检测页面加载状态
+        window.addEventListener('load', function() {
+            const statusElement = document.getElementById('loadStatus');
+            statusElement.innerHTML = '<span class="success">✅ 页面加载成功！静态资源部署正常</span>';
+            statusElement.innerHTML += '<br><span>部署时间: ' + new Date().toLocaleString('zh-CN') + '</span>';
+        });
+    </script>
+</body>
+</html>

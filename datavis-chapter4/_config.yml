@@ -1,0 +1,18 @@
+# GitHub Pages configuration for Jekyll
+title: "第4章 数据可视化平台"
+description: "基于图表样式、颜色应用、线型选择、数据标记、字体设置和填充区域技术"
+baseurl: "/datavis-chapter4"
+url: "https://022340614.github.io"
+
+# Build settings
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .github/
+  - node_modules/
+  - package.json
+  - package-lock.json
