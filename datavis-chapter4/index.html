@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章 数据可视化平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>第4章 数据可视化平台</h1>
+            <p>基于图表样式、颜色应用、线型选择、数据标记、字体设置和填充区域技术</p>
+        </header>
+
+        <div class="charts-grid">
+            <!-- 示例1：图书采购情况 -->
+            <div class="chart-card">
+                <h2>1. 图书采购情况分析</h2>
+                <canvas id="bookPurchaseChart"></canvas>
+                <p class="chart-desc">应用颜色和堆叠柱状图技术</p>
+            </div>
+
+            <!-- 示例2：汇率走势分析 -->
+            <div class="chart-card">
+                <h2>2. 汇率走势分析</h2>
+                <canvas id="exchangeRateChart"></canvas>
+                <p class="chart-desc">应用不同线型和颜色对比</p>
+            </div>
+
+            <!-- 示例3：产品销售趋势 -->
+            <div class="chart-card">
+                <h2>3. 产品销售趋势</h2>
+                <canvas id="salesTrendChart"></canvas>
+                <p class="chart-desc">应用数据标记和多种标记样式</p>
+            </div>
+
+            <!-- 示例4：温度走势预测 -->
+            <div class="chart-card">
+                <h2>4. 温度走势预测</h2>
+                <canvas id="temperatureChart"></canvas>
+                <p class="chart-desc">应用字体设置和数据标记</p>
+            </div>
+
+            <!-- 示例5：科赫雪花分形 -->
+            <div class="chart-card">
+                <h2>5. 科赫雪花分形</h2>
+                <canvas id="snowflakeChart"></canvas>
+                <p class="chart-desc">应用填充区域技术</p>
+            </div>
+
+            <!-- 示例6：颜色映射演示 -->
+            <div class="chart-card">
+                <h2>6. 颜色映射演示</h2>
+                <canvas id="colorMapChart"></canvas>
+                <p class="chart-desc">展示颜色搭配和应用</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>基于第4章内容创建 - 数据可视化技术实践</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "datavis-chapter4",
+  "version": "1.0.0",
+  "description": "第4章数据可视化平台 - 基于图表样式、颜色应用、线型选择、数据标记、字体设置和填充区域技术",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "live-server --port=8000",
+    "build": "echo 'No build process needed for static site'"
+  },
+  "keywords": [
+    "data-visualization",
+    "chart.js",
+    "matplotlib",
+    "python",
+    "javascript",
+    "interactive-charts"
+  ],
+  "author": "022340614",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/022340614/datavis-chapter4"
+  },
+  "homepage": "https://022340614.github.io/datavis-chapter4/",
+  "dependencies": {
+    "chart.js": "^3.9.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
