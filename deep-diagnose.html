@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Pages 深度诊断工具</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .success { border-left: 5px solid #28a745; }
+        .error { border-left: 5px solid #dc3545; }
+        .warning { border-left: 5px solid #ffc107; }
+        .info { border-left: 5px solid #17a2b8; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages 深度诊断工具</h1>
+    
+    <div class="test info">
+        <h3>🔍 当前环境信息</h3>
+        <p><strong>当前URL:</strong> <span id="current-url"></span></p>
+        <p><strong>预期URL:</strong> https://022340614.github.io/datavis-chapter4/</p>
+        <p><strong>仓库名称:</strong> datavis-chapter4</p>
+        <p><strong>用户名:</strong> 022340614</p>
+    </div>
+
+    <div class="test" id="url-analysis">
+        <h3>🌐 URL路径分析</h3>
+        <p>正在分析URL匹配情况...</p>
+    </div>
+
+    <div class="test" id="github-config">
+        <h3>⚙️ GitHub配置检查</h3>
+        <p>正在检查GitHub Pages设置...</p>
+    </div>
+
+    <div class="test" id="file-structure">
+        <h3>📁 文件结构验证</h3>
+        <p>正在验证必需文件...</p>
+    </div>
+
+    <div class="test" id="network-test">
+        <h3>🌍 网络连接测试</h3>
+        <p>正在测试外部资源加载...</p>
+    </div>
+
+    <div class="test warning">
+        <h3>🔧 问题诊断结果</h3>
+        <div id="diagnosis-result">分析中...</div>
+    </div>
+
+    <div class="test success">
+        <h3>✅ 解决方案</h3>
+        <ol>
+            <li><strong>检查GitHub仓库Settings > Pages</strong> - 确认绿色勾选标记</li>
+            <li><strong>验证仓库名称</strong> - 必须是"datavis-chapter4"（精确匹配）</li>
+            <li><strong>检查分支设置</strong> - 必须是main分支，根目录</li>
+            <li><strong>等待构建完成</strong> - 首次部署需要5-30分钟</li>
+            <li><strong>清除浏览器缓存</strong> - 使用无痕模式测试</li>
+        </ol>
+    </div>
+
+    <script>
+        // 当前URL分析
+        const currentUrl = window.location.href;
+        document.getElementById('current-url').textContent = currentUrl;
+        
+        // URL路径分析
+        const urlAnalysis = document.getElementById('url-analysis');
+        const expectedBase = 'https://022340614.github.io/datavis-chapter4/';
+        
+        if (currentUrl.startsWith(expectedBase)) {
+            urlAnalysis.innerHTML = '<h3>🌐 URL路径分析</h3><p>✅ URL基础路径匹配正确</p>';
+            urlAnalysis.className = 'test success';
+        } else {
+            urlAnalysis.innerHTML = `<h3>🌐 URL路径分析</h3>
+                <p>❌ URL路径不匹配</p>
+                <p>当前: ${currentUrl}</p>
+                <p>预期: ${expectedBase}</p>`;
+            urlAnalysis.className = 'test error';
+        }
+        
+        // GitHub配置检查
+        const githubConfig = document.getElementById('github-config');
+        setTimeout(() => {
+            githubConfig.innerHTML = `<h3>⚙️ GitHub配置检查</h3>
+                <p>📋 请在GitHub仓库中检查：</p>
+                <ul>
+                    <li>Settings > Pages 显示绿色勾选标记</li>
+                    <li>分支设置为 main</li>
+                    <li>文件夹设置为 / (root)</li>
+                    <li>仓库名称为 datavis-chapter4</li>
+                    <li>仓库可见性为 Public</li>
+                </ul>`;
+        }, 1000);
+        
+        // 文件结构验证
+        const files = ['index.html', 'styles.css', 'script.js', '.nojekyll', 'version.txt'];
+        const fileTest = document.getElementById('file-structure');
+        let fileHtml = '<h3>📁 文件结构验证</h3>';
+        
+        files.forEach(file => {
+            fetch(file)
+                .then(response => {
+                    if (response.ok) {
+                        fileHtml += `<p>✅ ${file} - 可访问</p>`;
+                    } else {
+                        fileHtml += `<p>❌ ${file} - 无法访问 (${response.status})</p>`;
+                    }
+                    fileTest.innerHTML = fileHtml;
+                })
+                .catch(error => {
+                    fileHtml += `<p>❌ ${file} - 网络错误</p>`;
+                    fileTest.innerHTML = fileHtml;
+                });
+        });
+        
+        // 网络连接测试
+        const networkTest = document.getElementById('network-test');
+        const cdns = [
+            'https://cdn.jsdelivr.net/npm/chart.js',
+            'https://cdn.jsdelivr.net/npm/plotly.js-dist'
+        ];
+        
+        cdns.forEach(url => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = () => {
+                networkTest.innerHTML += `<p>✅ ${url} - CDN可访问</p>`;
+            };
+            script.onerror = () => {
+                networkTest.innerHTML += `<p>❌ ${url} - CDN无法访问</p>`;
+            };
+            document.head.appendChild(script);
+        });
+        
+        // 诊断结果
+        setTimeout(() => {
+            const diagnosis = document.getElementById('diagnosis-result');
+            if (currentUrl.startsWith(expectedBase)) {
+                diagnosis.innerHTML = '<p>✅ URL配置正确，问题可能在GitHub Pages构建或缓存</p>';
+            } else {
+                diagnosis.innerHTML = '<p>❌ URL路径不匹配，请检查仓库名称和访问地址</p>';
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
