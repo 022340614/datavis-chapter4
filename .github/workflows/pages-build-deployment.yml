@@ -1,16 +1,16 @@
 name: pages-build-deployment
-on:
-  push:
-  workflow_dispatch:
+on: 
+  push: 
+  workflow_dispatch: 
 
-jobs:
-  deploy:
+jobs: 
+  deploy: 
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token:${{ secrets.GITHUB_TOKEN }}
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
