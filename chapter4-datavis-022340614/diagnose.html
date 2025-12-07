@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Pages 诊断工具</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .success { border-left: 5px solid #28a745; }
+        .error { border-left: 5px solid #dc3545; }
+        .warning { border-left: 5px solid #ffc107; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages 部署诊断</h1>
+    
+    <div class="test">
+        <h3>✅ 基础配置检查</h3>
+        <p><strong>用户名:</strong> 022340614</p>
+        <p><strong>仓库名:</strong> chapter4-datavis-022340614</p>
+        <p><strong>预期网址:</strong> https://022340614.github.io/chapter4-datavis-022340614/</p>
+    </div>
+
+    <div class="test" id="file-check">
+        <h3>📁 文件结构检查</h3>
+        <p>正在检查必需文件...</p>
+    </div>
+
+    <div class="test" id="cdn-check">
+        <h3>🌐 CDN资源检查</h3>
+        <p>正在测试外部资源加载...</p>
+    </div>
+
+    <div class="test">
+        <h3>🔧 解决方案</h3>
+        <ol>
+            <li>确认仓库名称完全匹配（包括大小写）</li>
+            <li>检查Settings > Pages显示绿色勾选标记</li>
+            <li>等待15-30分钟让DNS生效</li>
+            <li>尝试不同浏览器或清除缓存</li>
+            <li>访问 <a href="https://022340614.github.io/">用户主页</a> 测试基础功能</li>
+        </ol>
+    </div>
+
+    <script>
+        // 文件存在性检查
+        const files = ['index.html', 'styles.css', 'script.js', '.nojekyll'];
+        const fileCheck = document.getElementById('file-check');
+        
+        files.forEach(file => {
+            const img = document.createElement('img');
+            img.src = file;
+            img.onload = () => {
+                fileCheck.innerHTML += `<p>✅ ${file} - 存在</p>`;
+            };
+            img.onerror = () => {
+                fileCheck.innerHTML += `<p>❌ ${file} - 缺失</p>`;
+            };
+        });
+
+        // CDN资源检查
+        const cdns = [
+            'https://cdn.jsdelivr.net/npm/chart.js',
+            'https://cdn.jsdelivr.net/npm/plotly.js-dist'
+        ];
+        const cdnCheck = document.getElementById('cdn-check');
+        
+        cdns.forEach(url => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = () => cdnCheck.innerHTML += `<p>✅ ${url} - 可访问</p>`;
+            script.onerror = () => cdnCheck.innerHTML += `<p>❌ ${url} - 无法访问</p>`;
+            document.head.appendChild(script);
+        });
+    </script>
+</body>
+</html>
